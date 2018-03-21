@@ -1,0 +1,91 @@
+movidius@movidius-VirtualBox:~/workspace/ncsdk$ cd examples/apps
+movidius@movidius-VirtualBox:~/workspace/ncsdk/examples/apps$ make all
+make -C hello_ncs_py/. all
+make[1]: Entering directory '/home/movidius/workspace/ncsdk/examples/apps/hello_ncs_py'
+nothing to make, use 'make run' to run.
+make[1]: Leaving directory '/home/movidius/workspace/ncsdk/examples/apps/hello_ncs_py'
+make -C multistick_cpp/. all
+make[1]: Entering directory '/home/movidius/workspace/ncsdk/examples/apps/multistick_cpp'
+
+making googlenet
+(cd ../../caffe/GoogLeNet; make compile; cd ../../apps/multistick_cpp; cp ../../caffe/GoogLeNet/graph ./googlenet.graph;)
+make[2]: Entering directory '/home/movidius/workspace/ncsdk/examples/caffe/GoogLeNet'
+
+making prereqs
+(cd ../../data/ilsvrc12; make)
+make[3]: Entering directory '/home/movidius/workspace/ncsdk/examples/data/ilsvrc12'
+make[3]: Leaving directory '/home/movidius/workspace/ncsdk/examples/data/ilsvrc12'
+
+making prototxt
+Prototxt file already exists
+
+making caffemodel
+caffemodel file already exists
+
+making compile
+mvNCCompile -w bvlc_googlenet.caffemodel -s 12 deploy.prototxt
+mvNCCompile v02.00, Copyright @ Movidius Ltd 2016
+
+Layer  inception_3b/1x1  forced to im2col_v2, because its output is used in concat
+Layer  inception_3b/pool_proj  forced to im2col_v2, because its output is used in concat
+Layer  inception_4a/1x1  forced to im2col_v2, because its output is used in concat
+Layer  inception_4a/pool_proj  forced to im2col_v2, because its output is used in concat
+Layer  inception_4b/1x1  forced to im2col_v2, because its output is used in concat
+Layer  inception_4b/pool_proj  forced to im2col_v2, because its output is used in concat
+Layer  inception_4c/1x1  forced to im2col_v2, because its output is used in concat
+Layer  inception_4c/pool_proj  forced to im2col_v2, because its output is used in concat
+Layer  inception_4d/1x1  forced to im2col_v2, because its output is used in concat
+Layer  inception_4d/pool_proj  forced to im2col_v2, because its output is used in concat
+Layer  inception_4e/1x1  forced to im2col_v2, because its output is used in concat
+Layer  inception_4e/pool_proj  forced to im2col_v2, because its output is used in concat
+Layer  inception_5a/1x1  forced to im2col_v2, because its output is used in concat
+Layer  inception_5a/pool_proj  forced to im2col_v2, because its output is used in concat
+Layer  inception_5b/1x1  forced to im2col_v2, because its output is used in concat
+Layer  inception_5b/pool_proj  forced to im2col_v2, because its output is used in concat
+/usr/local/bin/ncsdk/Controllers/FileIO.py:52: UserWarning: You are using a large type. Consider reducing your data sizes for best performance
+  "Consider reducing your data sizes for best performance\033[0m")
+make[2]: Leaving directory '/home/movidius/workspace/ncsdk/examples/caffe/GoogLeNet'
+
+making squeezenet
+(cd ../../caffe/SqueezeNet; make compile; cd ../../apps/multistick_cpp; cp ../../caffe/SqueezeNet/graph ./squeezenet.graph;)
+make[2]: Entering directory '/home/movidius/workspace/ncsdk/examples/caffe/SqueezeNet'
+
+making prereqs
+(cd ../../data/ilsvrc12; make)
+make[3]: Entering directory '/home/movidius/workspace/ncsdk/examples/data/ilsvrc12'
+make[3]: Leaving directory '/home/movidius/workspace/ncsdk/examples/data/ilsvrc12'
+LICENSE file already exists
+
+making prototxt
+Prototxt file already exists
+
+making caffemodel
+caffemodel file already exists
+
+making compile
+mvNCCompile -w squeezenet_v1.0.caffemodel -s 12 deploy.prototxt
+mvNCCompile v02.00, Copyright @ Movidius Ltd 2016
+
+/usr/local/bin/ncsdk/Controllers/FileIO.py:52: UserWarning: You are using a large type. Consider reducing your data sizes for best performance
+  "Consider reducing your data sizes for best performance\033[0m")
+make[2]: Leaving directory '/home/movidius/workspace/ncsdk/examples/caffe/SqueezeNet'
+
+making multistick_cpp
+cp googlenet.graph cpp/googlenet.graph;
+cp squeezenet.graph cpp/squeezenet.graph;
+g++ cpp/multistick.cpp cpp/fp16.c -o cpp/multistick_cpp -lmvnc
+Created cpp/multistick_cpp executable
+make[1]: Leaving directory '/home/movidius/workspace/ncsdk/examples/apps/multistick_cpp'
+make -C hello_ncs_cpp/. all
+make[1]: Entering directory '/home/movidius/workspace/ncsdk/examples/apps/hello_ncs_cpp'
+
+making hello_ncs_cpp
+g++ cpp/hello_ncs.cpp -o cpp/hello_ncs_cpp -lmvnc
+Created cpp/hello_ncs_cpp executable
+make[1]: Leaving directory '/home/movidius/workspace/ncsdk/examples/apps/hello_ncs_cpp'
+movidius@movidius-VirtualBox:~/workspace/ncsdk/examples/apps$ cd hello_ncs_py
+movidius@movidius-VirtualBox:~/workspace/ncsdk/examples/apps/hello_ncs_py$ python hello_ncs.py
+Hello NCS! Device opened normally.
+Goodbye NCS! Device closed normally.
+NCS device working.
+movidius@movidius-VirtualBox:~/workspace/ncsdk/examples/apps/hello_ncs_py$ 
